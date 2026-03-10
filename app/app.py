@@ -11,7 +11,7 @@ def home():
     <h1>✅ DevOps CI/CD Project Running</h1>
     <p><b>Time:</b> {datetime.utcnow()} UTC</p>
     <p><b>Hostname:</b> {socket.gethostname()}</p>
-    <p><b>Version:</b> {os.getenv('APP_VERSION', 'v1')}</p>
+    <p><b>Version:</b> {os.getenv('APP_VERSION', 'v2')}</p>
     """
 
 @app.route("/health")
