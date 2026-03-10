@@ -8,9 +8,3 @@ systemctl start docker
 
 usermod -aG docker ec2-user
 
-# Pull your image (use :latest explicitly)
-docker pull baqtiyar/dockerflaskimage:latest
-
-# Run container
-docker run -d --name container1 -p 80:5000 baqtiyar/dockerflaskimage:latest
-

@@ -9,9 +9,7 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
-  access_key = ""
-  secret_key = ""
-}
+ }
 
 resource "aws_security_group" "web_sg" {
   name        = "devops-web-sg"
@@ -39,10 +37,16 @@ resource "aws_security_group" "web_sg" {
   }
 }
 
+resource "aws_key_pair" "deployer" {
+  key_name   = "ec2-key"
+  public_key = file("${path.module}/ec2-key.pub")
+}
+
 resource "aws_instance" "s1" {
   ami                    = "ami-0f3caa1cf4417e51b"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web_sg.id]
+  key_name = aws_key_pair.deployer.key_name
 
 user_data = file("${path.module}/userdata.sh")
 
